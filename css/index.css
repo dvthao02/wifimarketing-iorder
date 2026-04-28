@@ -525,6 +525,27 @@ body {
   background: rgba(0, 180, 255, 0.14);
 }
 
+.body-accent-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--accent), var(--brand));
+  background-size: 200% 100%;
+  animation: iorder-accent-slide 3s linear infinite;
+  z-index: 20;
+}
+
+@keyframes iorder-accent-slide {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 200% 0%;
+  }
+}
+
 .body-loading {
   position: fixed;
   inset: 0;
@@ -543,9 +564,43 @@ body {
 }
 
 .loading-logo {
-  width: 88px;
-  height: 88px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
+  animation: iorder-fade-up 0.5s ease both;
+  filter: drop-shadow(0 0 24px rgba(0, 180, 255, 0.5));
+}
+
+.loading-brand-name {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--brand);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  animation: iorder-fade-up 0.55s ease both;
+  animation-delay: 0.12s;
+}
+
+.loading-tagline {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 8px;
+  animation: iorder-fade-up 0.55s ease both;
+  animation-delay: 0.24s;
+}
+
+@keyframes iorder-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .loading-ring {
@@ -564,7 +619,11 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .body-background {
+  .body-background,
+  .body-accent-bar,
+  .loading-logo,
+  .loading-brand-name,
+  .loading-tagline {
     animation: none;
   }
 
